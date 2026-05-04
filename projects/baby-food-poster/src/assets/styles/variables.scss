@@ -1,0 +1,25 @@
+// 品牌色
+$brand-primary: #d4816a;
+$brand-primary-light: #e8a899;
+$brand-primary-dark: #b3614e;
+
+// 背景色
+$bg-page: #f5f5f5;
+$bg-card: #ffffff;
+
+// 文字色
+$text-primary: #333333;
+$text-secondary: #666666;
+$text-placeholder: #999999;
+
+// 边框色
+$border-color: #e8e8e8;
+
+// CSS 变量
+:root {
+  --brand-primary: #{$brand-primary};
+  --brand-primary-light: #{$brand-primary-light};
+  --brand-primary-dark: #{$brand-primary-dark};
+  --bg-page: #{$bg-page};
+  --sidebar-width: 220px;
+}
