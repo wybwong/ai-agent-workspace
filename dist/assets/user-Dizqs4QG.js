@@ -1,0 +1,1 @@
+import{r as o}from"./index-DjaQnkMg.js";import"./dayjs.min-DZmtPI41.js";import"./index-BiLc3vE-.js";import"./typescript-SZhcMK4h.js";const n=()=>o.get("/user/info"),p=t=>o.post("/auth/login",t);export{n as getUserInfo,p as login};
