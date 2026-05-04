@@ -28,9 +28,9 @@
 
 | 技能名 | 状态 |
 |--------|------|
-| vue3-vite-starter | 🔧 待验证 |
+| vue3-vite-starter | ✅ 稳定可用 |
 | dev-standards | ✅ 稳定可用 |
-| project-starter | 🔧 待验证 |
+| project-starter | ✅ 稳定可用 |
 | auth-pattern | 🔧 待验证 |
-| ci-cd | 📝 草稿 |
-| testing | 📝 草稿 |
+| ci-cd | 🔧 待验证 |
+| testing | 🔧 待验证 |

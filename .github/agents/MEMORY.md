@@ -53,6 +53,21 @@
 - 记忆更新触发条件：任务产生关键决策、用户偏好、可复用经验
 - 任务收尾动作：完成后检查是否需要更新 USER 或 MEMORY
 
+### 2026-05-04：vue3-vite-starter 模板完善与验证
+
+- 背景：模板初版能构建但缺少 Layout/登录页/404，实际使用会立刻遇到空白页面
+- 决策：补全 BasicLayout.vue（可折叠侧边栏+顶栏）、login/index.vue、error/404.vue，重构 router 为嵌套路由结构
+- 额外安装：`sass-embedded`、`@element-plus/icons-vue`
+- 验证结果：`npm run build` 通过（1735 modules，7.58s），公网预览访问正常
+- 影响：模板升级为 v1.1.0，状态从"待验证"升为"✅ 稳定可用"，可直接复制投入实际项目
+
+### 2026-05-04：多编辑器智能体入口文件覆盖
+
+- 背景：智能体规则只在 .github/agents/ 内，新对话需手动引用，不够自动
+- 决策：在根目录创建各编辑器标准入口文件
+- 覆盖范围：AGENTS.md（Copilot/Trae/Windsurf）、CLAUDE.md（Claude Code）、.cursorrules（Cursor）、.codebuddy/AGENTS.md（Codebuddy）
+- 影响：所有主流 AI 编辑器打开此仓库时自动加载 Hermes-Core 身份和工作规则
+
 ## 复查清单
 
 - 是否有可迁移到模板或工具的重复流程
