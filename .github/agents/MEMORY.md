@@ -73,3 +73,15 @@
 - 是否有可迁移到模板或工具的重复流程
 - 是否有过时规则需要修订
 - 是否遗漏了关键背景导致后续理解断层
+
+### 2026-05-04：集成 Vitest 测试 + GitHub Actions CI
+
+- 背景：testing 和 ci-cd 两个技能停留在"待验证"状态，模板缺少测试能力
+- 决策：
+  1. vue3-vite-starter 模板集成 Vitest（vitest.config.js + 示例测试 + package.json scripts）
+  2. 工作区根目录添加 `.github/workflows/ci.yml`，自动验证模板构建与测试
+- 影响：
+  - 模板升级为 v1.2.0，内置完整测试闭环
+  - ci-cd 技能状态升为 ✅，testing 技能状态升为 ✅
+  - auth-pattern 仍为 🔧（代码完整，但尚未在实际项目中验证）
+- 待办：下次接到实际项目时，用 auth-pattern 技能落地并标记为 ✅
