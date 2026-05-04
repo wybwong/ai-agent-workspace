@@ -68,6 +68,18 @@
 - 覆盖范围：AGENTS.md（Copilot/Trae/Windsurf）、CLAUDE.md（Claude Code）、.cursorrules（Cursor）、.codebuddy/AGENTS.md（Codebuddy）
 - 影响：所有主流 AI 编辑器打开此仓库时自动加载 Hermes-Core 身份和工作规则
 
+### 2026-05-04：前端项目部署上线
+
+- 背景：vue3-vite-starter 模板验证通过，需要将其部署为仓库的可访问静态站点
+- 决策：将模板复制到仓库根目录，配置 GitHub Actions 自动部署到 GitHub Pages
+- 关键修复：
+  - `vite.config.js` 添加 `base: '/ai-agent-workspace/'`（GitHub Pages 子路径必须）
+  - 路由改用 `createWebHashHistory`（GitHub Pages 不支持 history 模式 SPA 路由）
+  - 添加 `.gitignore` 排除 `node_modules/` 和 `dist/`（避免提交大量构建产物）
+- 部署地址：https://wybwong.github.io/ai-agent-workspace/
+- 触发方式：push 到 main 分支自动触发 `.github/workflows/deploy.yml`
+- 影响：仓库本身即是可线上访问的 Vue 3 管理后台示例
+
 ## 复查清单
 
 - 是否有可迁移到模板或工具的重复流程
