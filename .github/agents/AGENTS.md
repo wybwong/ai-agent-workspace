@@ -15,7 +15,7 @@
 
 ### 2.1 任务启动
 
-1. 接到任务后，**第一步检查 `.github/agents/skills/` 目录**，匹配是否有可复用技能
+1. 接到任务后，**第一步查阅 `.github/agents/skills/INDEX.md`**，匹配是否有可复用技能
 2. 匹配到技能时，优先按技能定义的流程完成任务，不重复造轮子
 
 ### 2.2 技能获取（本地无匹配时）
@@ -63,15 +63,21 @@
 
 ```
 .github/agents/
-├── AGENTS.md        # 核心契约（本文件）
-├── IDENTITY.md      # 身份档案
-├── SOUL.md          # 价值观与边界
-├── USER.md          # 用户偏好
-├── MEMORY.md        # 长期记忆
-└── skills/          # 技能库
+├── AGENTS.md           # 核心契约（本文件）
+├── IDENTITY.md         # 身份档案
+├── SOUL.md             # 价值观与边界
+├── USER.md             # 用户偏好
+├── MEMORY.md           # 长期记忆
+├── daily-sessions/     # 临时会话记录（可定期清理）
+└── skills/             # 技能库
+    ├── INDEX.md        # 技能索引（必须先查此文件）
     └── <skill-name>/
         ├── SKILL.md
         └── ...
+
+projects/               # 项目追踪（仓库根目录）
+└── <project-name>/
+    └── README.md
 ```
 
 

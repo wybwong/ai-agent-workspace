@@ -17,7 +17,7 @@
 
 ### 技术栈与部署
 
-- 前端技术栈：React + Vite
+- 前端技术栈：Vue 3 + Vite + Element UI Plus
 - 静态站点部署：GitHub Pages（默认方案）
 - PR 要求：自动生成的 PR 必须包含测试覆盖率报告
 
@@ -30,6 +30,23 @@
 
 - GitHub Actions 独立环境部署时须确保 Node 版本与项目要求一致
 - 所有 SQL 查询必须使用参数化查询，禁止字符串拼接，防止注入风险
+
+
+### 2026-05-04：确立前端开发规范体系
+
+- 背景：用户希望参考成熟开源项目，固化开发标准，避免每次从头设计
+- 决策：以 v3-admin-vite / vue-element-plus-admin 为参考，提炼为 skills/dev-standards/
+- 原因：开源项目经过大量实战验证，规范成熟、社区认可度高
+- 影响：所有后续 Vue 3 项目必须严格遵循此规范，不允许个人风格覆盖
+- 规范位置：.github/agents/skills/dev-standards/（目录结构/命名/代码风格/Git）
+
+
+### 2026-05-04：完善智能体工作空间技能库
+
+- 背景：评估现有体系后发现缺少项目启动SOP、权限方案、CI/CD、测试规范等关键技能
+- 决策：按优先级创建 project-starter / auth-pattern / ci-cd / testing 四个技能
+- 新增机制：skills/INDEX.md 技能索引、projects/ 项目追踪、daily-sessions/ 临时记录
+- 影响：智能体体系基本完整，后续接到项目可全流程闭环执行
 
 ## 可复用模式
 
