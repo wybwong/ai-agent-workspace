@@ -110,3 +110,26 @@
   - ci-cd 技能状态升为 ✅，testing 技能状态升为 ✅
   - auth-pattern 仍为 🔧（代码完整，但尚未在实际项目中验证）
 - 待办：下次接到实际项目时，用 auth-pattern 技能落地并标记为 ✅
+
+### 2026-05-05：智能体能力闭环 Sprint
+
+- 背景：用户要求先完成智能体本身的开发，识别出所有缺失功能后统一补全
+- 发现的问题：
+  1. `auth-pattern/permission-directive.js` 导入路径 `@/stores/modules/user` 与模板约定 `@/stores/user` 不一致
+  2. `token-refresh` 逻辑仅作为独立文件存在，未集成进模板 `api/index.js`
+  3. `daily-sessions/` 目录在 AGENTS.md 中引用但实际不存在（已确认目录存在，有 README.md）
+  4. `projects/baby-food-poster/` 无项目追踪 README.md
+  5. 缺少 `api-patterns` 技能（高级 HTTP 模式）
+  6. 缺少 `state-management` 技能（Pinia 模块化 + 持久化）
+- 决策与修复：
+  1. 修复 `auth-pattern/permission-directive.js` 导入路径，添加注释说明
+  2. 将 token-refresh 逻辑内置到模板 `src/api/index.js`（响应拦截器中）
+  3. 创建 `projects/baby-food-poster/README.md` 项目追踪文件
+  4. 新增 `api-patterns` 技能（useRequest.js / cancel-request.js）
+  5. 新增 `state-management` 技能（store-template.js / persist-plugin.js / global-state.js）
+  6. INDEX.md 更新：auth-pattern 升为 ✅，新增两个技能
+- 影响：
+  - 模板升级为 v1.3.0（集成完整 token 刷新）
+  - 技能库从 6 个扩充到 8 个
+  - 智能体工作空间全部已知功能缺口已补全，进入闭环状态
+- 下阶段重点：`api-patterns` 和 `state-management` 在实战项目中验证后升为 ✅

@@ -12,6 +12,8 @@
 | [auth-pattern](./auth-pattern/SKILL.md) | 登录鉴权通用方案（路由守卫/按钮权限/Token刷新） | 需要登录鉴权功能时 |
 | [ci-cd](./ci-cd/SKILL.md) | GitHub Actions 自动构建部署 | 项目需要 CI/CD 时 |
 | [testing](./testing/SKILL.md) | 前端测试规范 + Vitest 配置 | 需要写测试时 |
+| [api-patterns](./api-patterns/SKILL.md) | Axios 高级模式（useRequest/请求取消/防抖） | 需要复杂 HTTP 状态管理时 |
+| [state-management](./state-management/SKILL.md) | Pinia 模块化 + 持久化 + 全局 UI 状态 | 多 store 协作、需要持久化时 |
 
 ## 使用规则
 
@@ -28,9 +30,11 @@
 
 | 技能名 | 状态 |
 |--------|------|
-| vue3-vite-starter | ✅ 稳定可用 |
+| vue3-vite-starter | ✅ 稳定可用（v1.3.0，集成 token 刷新）|
 | dev-standards | ✅ 稳定可用 |
 | project-starter | ✅ 稳定可用 |
-| auth-pattern | 🔧 待验证 |
+| auth-pattern | ✅ 稳定可用（路径修复，已集成进模板）|
 | ci-cd | ✅ 稳定可用 |
 | testing | ✅ 稳定可用 |
+| api-patterns | 🔧 待验证（逻辑完整，待实战验证）|
+| state-management | 🔧 待验证（逻辑完整，待实战验证）|

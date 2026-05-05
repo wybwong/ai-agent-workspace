@@ -72,8 +72,8 @@ template/
 6. 复制 `DemoList.vue` 改造为目标业务页面
 
 ## 版本与来源
-- 版本：1.2.0
+- 版本：1.3.0
 - 创建日期：2026-05-04
-- 最后更新：2026-05-04（集成 Vitest 测试支持：vitest.config.js + 示例测试 + test/coverage scripts）
+- 最后更新：2026-05-05（api/index.js 集成完整 token 无感刷新逻辑；使用 getToken/removeToken 工具函数替代直接操作 localStorage）
 - 来源：Hermes-Core 根据用户技术栈自定义生成
 - 依赖版本：Vue 3.x / Vite 5.x / Element UI Plus 2.x / Pinia 2.x / @element-plus/icons-vue / Vitest 1.x
