@@ -10,7 +10,8 @@
  *   <el-button v-permission="['admin', 'editor']">管理员或编辑可见</el-button>
  */
 
-import { useUserStore } from '@/stores/modules/user'
+// 默认路径匹配 vue3-vite-starter 模板结构，若使用 modules 子目录请改为 '@/stores/modules/user'
+import { useUserStore } from '@/stores/user'
 
 function hasPermission(value) {
   const userStore = useUserStore()
