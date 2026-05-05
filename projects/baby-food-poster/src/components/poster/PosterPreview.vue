@@ -110,7 +110,7 @@ import { getThemeByName, DEFAULT_THEME } from '@/constants/themes'
 
 const props = defineProps({
   recipe: {
-    type: Object as () => Recipe,
+    type: Object as () => Partial<Recipe>,
     required: true,
   },
 })

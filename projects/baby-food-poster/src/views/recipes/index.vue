@@ -118,7 +118,7 @@ const isSaving = ref(false)
 const showCreateDialog = ref(false)
 const createStep = ref(0)
 const rawText = ref('')
-const parsedRecipe = ref<Recipe | null>(null)
+const parsedRecipe = ref<Partial<Recipe> | null>(null)
 
 const filteredList = computed(() => {
   if (!searchText.value.trim()) return recipeList.value
@@ -165,7 +165,7 @@ async function handleSave() {
   if (!parsedRecipe.value) return
   isSaving.value = true
   try {
-    await dbService.createRecipe({ ...parsedRecipe.value, rawText: rawText.value })
+    await dbService.createRecipe({ ...parsedRecipe.value, rawText: rawText.value } as Omit<Recipe, 'id'>)
     ElMessage.success('保存成功')
     showCreateDialog.value = false
     await loadList()

@@ -348,3 +348,23 @@ export async function getAllSettings(): Promise<Record<string, string>> {
   const rows = queryAll('SELECT key, value FROM settings')
   return Object.fromEntries(rows.map(r => [r.key as string, r.value as string]))
 }
+
+export const dbService = {
+  init: ensureInit,
+  getAllRecipes,
+  getRecipeById,
+  createRecipe,
+  updateRecipe,
+  deleteRecipe,
+  getAllRawRecipes,
+  createRawRecipe,
+  updateRawRecipe,
+  deleteRawRecipe,
+  getAllPromptTemplates,
+  createPromptTemplate,
+  updatePromptTemplate,
+  deletePromptTemplate,
+  getSetting,
+  setSetting,
+  getAllSettings,
+}

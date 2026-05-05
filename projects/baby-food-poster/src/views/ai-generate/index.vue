@@ -118,7 +118,7 @@ const templateList = ref<PromptTemplate[]>([])
 const selectedTemplateId = ref<number | null>(null)
 const variableValues = reactive<Record<string, string>>({})
 const rawResult = ref('')
-const parsedResult = ref<Recipe | null>(null)
+const parsedResult = ref<Partial<Recipe> | null>(null)
 const isGenerating = ref(false)
 const isSaving = ref(false)
 
@@ -190,7 +190,7 @@ async function handleSave() {
   if (!parsedResult.value) return
   isSaving.value = true
   try {
-    await dbService.createRecipe({ ...parsedResult.value, rawText: rawResult.value })
+    await dbService.createRecipe({ ...parsedResult.value, rawText: rawResult.value } as Omit<Recipe, 'id'>)
     ElMessage.success('配方已保存')
   } finally {
     isSaving.value = false
