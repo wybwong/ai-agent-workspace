@@ -1,0 +1,8 @@
+// 项目主题色（覆盖 Element Plus 默认值）
+// 在 vite.config.js 的 css.preprocessorOptions 中引入此文件
+
+:root {
+  --el-color-primary: #409eff;
+  --app-sidebar-width: 220px;
+  --app-header-height: 60px;
+}
