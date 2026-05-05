@@ -32,5 +32,5 @@
 | dev-standards | ✅ 稳定可用 |
 | project-starter | ✅ 稳定可用 |
 | auth-pattern | 🔧 待验证 |
-| ci-cd | 🔧 待验证 |
-| testing | 🔧 待验证 |
+| ci-cd | ✅ 稳定可用 |
+| testing | ✅ 稳定可用 |

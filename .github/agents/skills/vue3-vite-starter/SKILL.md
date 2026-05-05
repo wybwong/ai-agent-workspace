@@ -57,6 +57,10 @@ template/
         │   └── 404.vue           # 404 错误页
         └── demo/
             └── DemoList.vue      # 完整 CRUD 示例页面
+├── vitest.config.js              # Vitest 测试配置（jsdom + coverage）
+└── src/
+    └── __tests__/
+        └── format.test.js        # utils 示例测试（可复制改造）
 ```
 
 ## 调用方式
@@ -68,8 +72,8 @@ template/
 6. 复制 `DemoList.vue` 改造为目标业务页面
 
 ## 版本与来源
-- 版本：1.1.0
+- 版本：1.2.0
 - 创建日期：2026-05-04
-- 最后更新：2026-05-04（补全 Layout/Login/404，构建验证通过）
+- 最后更新：2026-05-04（集成 Vitest 测试支持：vitest.config.js + 示例测试 + test/coverage scripts）
 - 来源：Hermes-Core 根据用户技术栈自定义生成
-- 依赖版本：Vue 3.x / Vite 5.x / Element UI Plus 2.x / Pinia 2.x / @element-plus/icons-vue
+- 依赖版本：Vue 3.x / Vite 5.x / Element UI Plus 2.x / Pinia 2.x / @element-plus/icons-vue / Vitest 1.x
