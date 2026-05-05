@@ -1,4 +1,5 @@
 import type { Recipe, RawRecipe, PromptTemplate } from '@/types'
+import initSqlJs from 'sql.js'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let SQL: any = null
@@ -11,9 +12,6 @@ const LS_KEY = 'recipeDb_v2'
 
 async function loadSqlJs() {
   if (SQL) return SQL
-  // @ts-ignore dynamic import
-  const mod = await import('sql.js')
-  const initSqlJs = mod.default || mod
   SQL = await initSqlJs({ locateFile: () => '/sql-wasm.wasm' })
   return SQL
 }
