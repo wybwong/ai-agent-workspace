@@ -16,6 +16,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/baby-food-poster
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,17 +28,19 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: projects/baby-food-poster/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: npm run build -- --base=/ai-agent-workspace/projects/baby-food-poster/
 
+      # actions/upload-pages-artifact runs from repo root, not affected by defaults.run.working-directory
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: projects/baby-food-poster/dist
 
   deploy:
     needs: build
