@@ -40,11 +40,23 @@ jobs:
       - name: Build
         run: npm run build -- --base=/ai-agent-workspace/projects/baby-food-poster/
 
+      - name: Stage artifacts
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/_site/projects/baby-food-poster
+          cp -r dist/. $GITHUB_WORKSPACE/_site/projects/baby-food-poster/
+          cat > $GITHUB_WORKSPACE/_site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head><meta http-equiv="refresh" content="0; url=projects/baby-food-poster/"></head>
+          <body>Redirecting to <a href="projects/baby-food-poster/">baby-food-poster</a></body>
+          </html>
+          EOF
+
       # actions/upload-pages-artifact runs from repo root, not affected by defaults.run.working-directory
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: projects/baby-food-poster/dist
+          path: _site
 
   deploy:
     needs: build
