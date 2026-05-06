@@ -133,3 +133,32 @@
   - 技能库从 6 个扩充到 8 个
   - 智能体工作空间全部已知功能缺口已补全，进入闭环状态
 - 下阶段重点：`api-patterns` 和 `state-management` 在实战项目中验证后升为 ✅
+
+### 2026-05-06：baby-food-poster 完整部署流程跑通 + admin-system 技能创建
+
+- 背景：用户要求跑通整个部署流程并从第一个项目中总结开发经验
+- 现状确认：
+  - 项目构建通过（1636 modules，TypeScript 零错误）
+  - deploy.yml 配置正确，但 GitHub Pages 功能未在仓库 Settings 中开启，导致 deploy job 404 失败
+  - **用户须手动操作**：Settings → Pages → Source → GitHub Actions（一次性配置）
+- 决策与修复：
+  1. 新增 `.github/workflows/ci-baby-food-poster.yml`：在 PR/push 时验证 baby-food-poster 构建（类型检查+构建）
+  2. 更新 `deploy.yml`：添加 `paths` 过滤（只在项目文件或 workflow 变更时触发），节省 CI 资源
+  3. 新增 `admin-system` 技能（后台管理系统全流程规范）：
+     - `directory-structure.md`：完整目录树 + 每个目录的职责规则 + 快速参考表
+     - `quick-start.md`：30 分钟新项目启动 SOP（脚手架/骨架/核心配置/布局框架）
+     - `page-patterns.md`：列表页/表单弹窗/useTable 三大典型页面范式
+     - `lessons-learned.md`：9 条 baby-food-poster 实战经验（GitHub Pages/CI/chunk/Pinia/类型等）
+  4. INDEX.md 新增 admin-system 条目（✅ 稳定可用）
+- 影响：
+  - 技能库从 8 个扩充到 9 个
+  - admin-system 是后续所有后台管理系统项目的强制参考入口
+  - deploy 工作流更精准，不再因无关文件变更触发部署
+
+## 关键运维知识
+
+### GitHub Pages 新项目启动必做
+1. Settings → Pages → Source → GitHub Actions（手动开启，一次性）
+2. vite build 加 `--base=/仓库名/子路径/`
+3. router 用 `createWebHashHistory()`
+
