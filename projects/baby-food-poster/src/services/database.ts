@@ -12,7 +12,7 @@ const LS_KEY = 'recipeDb_v2'
 
 async function loadSqlJs() {
   if (SQL) return SQL
-  SQL = await initSqlJs({ locateFile: () => '/sql-wasm.wasm' })
+  SQL = await initSqlJs({ locateFile: (file: string) => `${import.meta.env.BASE_URL}${file}` })
   return SQL
 }
 
