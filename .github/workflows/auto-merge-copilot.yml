@@ -1,0 +1,37 @@
+name: Auto-merge Copilot PRs
+
+# 当 Copilot Agent 创建的 PR 打开或更新时，自动开启 auto-merge。
+# 前提：仓库 Settings → General → Allow auto-merge 必须开启（一次性配置）。
+# 所有 CI 检查通过后 PR 会自动合并到 main，触发 deploy.yml / deploy-server.yml。
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [main]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  auto-merge:
+    name: Enable auto-merge for Copilot PR
+    # 双重校验：分支名以 copilot/ 开头，且 PR 创建者是 Copilot 官方应用账号
+    # 防止非授权用户通过创建 copilot/ 分支触发自动合并
+    if: >
+      startsWith(github.head_ref, 'copilot/') &&
+      (github.event.pull_request.user.login == 'Copilot' ||
+       github.event.pull_request.user.login == 'copilot-swe-agent[bot]')
+    runs-on: ubuntu-latest
+    steps:
+      # 注意：auto-merge 会等待所有必需的 CI 检查通过后再合并。
+      # 如果仓库没有配置 Branch protection required checks，PR 会立即合并。
+      # 推荐在 Settings → Branches 为 main 添加 "CI — baby-food-poster" 作为必需检查。
+      - name: Enable auto-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} \
+            --auto \
+            --merge
