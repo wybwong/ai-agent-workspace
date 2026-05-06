@@ -12,7 +12,8 @@ const LS_KEY = 'recipeDb_v2'
 
 async function loadSqlJs() {
   if (SQL) return SQL
-  SQL = await initSqlJs({ locateFile: () => '/sql-wasm.wasm' })
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+  SQL = await initSqlJs({ locateFile: (file: string) => `${base}/${file}` })
   return SQL
 }
 
