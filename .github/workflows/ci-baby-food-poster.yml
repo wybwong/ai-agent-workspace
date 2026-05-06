@@ -11,6 +11,9 @@ on:
       - 'projects/baby-food-poster/**'
   workflow_dispatch:
 
+env:
+  BASE_PATH: /ai-agent-workspace/projects/baby-food-poster/
+
 jobs:
   build:
     name: Build baby-food-poster
@@ -36,4 +39,4 @@ jobs:
         run: npm ci
 
       - name: Type check & Build
-        run: npm run build -- --base=/ai-agent-workspace/projects/baby-food-poster/
+        run: npm run build -- --base=${{ env.BASE_PATH }}
