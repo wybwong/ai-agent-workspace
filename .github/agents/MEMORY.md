@@ -155,6 +155,23 @@
   - admin-system 是后续所有后台管理系统项目的强制参考入口
   - deploy 工作流更精准，不再因无关文件变更触发部署
 
+### 2026-05-07：hermes-admin 完整后台管理系统落地
+
+- 背景：admin-system 技能只有规范文档，缺少实际落地项目；用户要求按规范继续开发
+- 决策：创建 `projects/hermes-admin/` 独立 Vue 3 + TypeScript + Vite 项目，55个文件全部落地
+- 核心功能交付：
+  1. **动态权限路由**：`permission.ts` store + `router.addRoute()` + 路由守卫 4 步流程
+  2. **用户/角色/菜单管理**：完整 CRUD，内存 Mock 数据（无需后端）
+  3. **TagsView 多标签页**：右键菜单（关闭当前/其他/所有），/dashboard 固定不可关闭
+  4. **主题切换**：亮/暗，html.dark CSS var 覆盖，Element Plus dark CSS vars
+  5. **侧边栏递归菜单**：SidebarItem.vue 递归，按权限过滤
+  6. **BaseTable + useTable**：通用表格组件 + 组合式函数
+  7. **v-permission 指令**：按钮级权限控制
+- Mock 账号：admin/123456（全权限），editor/123456（仅 dashboard）
+- CI：`.github/workflows/ci-hermes-admin.yml`（构建验证，base 路径 `/ai-agent-workspace/projects/hermes-admin/`）
+- 构建验证：npm run build 零 TypeScript 错误，产物 ~1.6M
+- 待完善：后端 API 对接（目前全 Mock），deploy workflow（参考 baby-food-poster 模式）
+
 ## 关键运维知识
 
 ### GitHub Pages 新项目启动必做
@@ -162,3 +179,10 @@
 2. vite build 加 `--base=/仓库名/子路径/`
 3. router 用 `createWebHashHistory()`
 
+
+## 2026-05 Hermes Admin 项目创建
+
+- 在 `projects/hermes-admin/` 创建了完整 Vue 3 管理后台，55个文件
+- 技术栈：Vue 3 + TypeScript + Vite + Element Plus + Pinia + Vue Router 4 (Hash)
+- 纯 Mock 数据（无 msw），动态路由权限系统，TagsView，明暗主题
+- `npm run build` 零错误验证通过，产物 1.6M
