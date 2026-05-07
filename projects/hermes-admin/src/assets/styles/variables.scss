@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #409eff;
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --sidebar-bg: #001529;
+  --sidebar-text: rgba(255,255,255,0.85);
+  --sidebar-active: #409eff;
+  --text-color: #303133;
+  --text-secondary: #909399;
+  --border-color: #dcdfe6;
+  --bg-hover: #f5f7fa;
+}
+
+html.dark {
+  --bg-color: #141414;
+  --card-bg: #1d1d1d;
+  --navbar-bg: #1d1d1d;
+  --sidebar-bg: #000c17;
+  --sidebar-text: rgba(255,255,255,0.75);
+  --sidebar-active: #409eff;
+  --text-color: #e5eaf3;
+  --text-secondary: #a3a6ad;
+  --border-color: #414243;
+  --bg-hover: #2c2c2c;
+}
