@@ -14,6 +14,7 @@
 | [testing](./testing/SKILL.md) | 前端测试规范 + Vitest 配置 | 需要写测试时 |
 | [api-patterns](./api-patterns/SKILL.md) | Axios 高级模式（useRequest/请求取消/防抖） | 需要复杂 HTTP 状态管理时 |
 | [state-management](./state-management/SKILL.md) | Pinia 模块化 + 持久化 + 全局 UI 状态 | 多 store 协作、需要持久化时 |
+| [admin-system](./admin-system/SKILL.md) | 后台管理系统完整开发规范（目录/快速启动/页面范式/实战经验） | 开发后台管理系统时（替代 dev-standards 用于管理系统场景） |
 
 ## 使用规则
 
@@ -38,3 +39,4 @@
 | testing | ✅ 稳定可用 |
 | api-patterns | 🔧 待验证（逻辑完整，待实战验证）|
 | state-management | 🔧 待验证（逻辑完整，待实战验证）|
+| admin-system | ✅ 稳定可用（v1.0.0，基于 baby-food-poster 实战经验）|

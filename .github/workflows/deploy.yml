@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'projects/baby-food-poster/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,6 +20,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/baby-food-poster
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,17 +32,31 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: projects/baby-food-poster/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: npm run build -- --base=/ai-agent-workspace/projects/baby-food-poster/
 
+      - name: Stage artifacts
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/_site/projects/baby-food-poster
+          cp -r dist/. $GITHUB_WORKSPACE/_site/projects/baby-food-poster/
+          cat > $GITHUB_WORKSPACE/_site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head><meta http-equiv="refresh" content="0; url=projects/baby-food-poster/"></head>
+          <body>Redirecting to <a href="projects/baby-food-poster/">baby-food-poster</a></body>
+          </html>
+          EOF
+
+      # actions/upload-pages-artifact runs from repo root, not affected by defaults.run.working-directory
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
 
   deploy:
     needs: build

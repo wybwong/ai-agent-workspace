@@ -62,14 +62,18 @@ function dbPlugin() {
     },
 
     generateBundle() {
-      // Copy WASM to dist for production
-      const wasmSrc = path.resolve(process.cwd(), 'node_modules/sql.js/dist/sql-wasm.wasm')
-      if (fs.existsSync(wasmSrc)) {
-        this.emitFile({
-          type: 'asset',
-          fileName: 'sql-wasm.wasm',
-          source: fs.readFileSync(wasmSrc),
-        })
+      // Copy WASM files to dist for production.
+      // sql.js browser build requests sql-wasm-browser.wasm; also copy sql-wasm.wasm as fallback.
+      const wasmFiles = ['sql-wasm-browser.wasm', 'sql-wasm.wasm']
+      for (const name of wasmFiles) {
+        const wasmSrc = path.resolve(process.cwd(), `node_modules/sql.js/dist/${name}`)
+        if (fs.existsSync(wasmSrc)) {
+          this.emitFile({
+            type: 'asset',
+            fileName: name,
+            source: fs.readFileSync(wasmSrc),
+          })
+        }
       }
     },
   }
