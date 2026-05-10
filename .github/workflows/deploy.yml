@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'projects/baby-food-poster/**'
+      - 'projects/hermes-admin/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -20,9 +21,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: projects/baby-food-poster
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,24 +29,50 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: projects/baby-food-poster/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Build baby-food-poster
+        working-directory: projects/baby-food-poster
+        run: |
+          npm ci
+          npm run build -- --base=/ai-agent-workspace/projects/baby-food-poster/
 
-      - name: Build
-        run: npm run build -- --base=/ai-agent-workspace/projects/baby-food-poster/
+      - name: Build hermes-admin
+        working-directory: projects/hermes-admin
+        run: |
+          npm ci
+          npm run build -- --base=/ai-agent-workspace/projects/hermes-admin/
 
       - name: Stage artifacts
         run: |
-          mkdir -p $GITHUB_WORKSPACE/_site/projects/baby-food-poster
-          cp -r dist/. $GITHUB_WORKSPACE/_site/projects/baby-food-poster/
-          cat > $GITHUB_WORKSPACE/_site/index.html << 'EOF'
+          mkdir -p _site/projects/baby-food-poster
+          cp -r projects/baby-food-poster/dist/. _site/projects/baby-food-poster/
+
+          mkdir -p _site/projects/hermes-admin
+          cp -r projects/hermes-admin/dist/. _site/projects/hermes-admin/
+
+          cat > _site/index.html << 'EOF'
           <!DOCTYPE html>
-          <html>
-          <head><meta http-equiv="refresh" content="0; url=projects/baby-food-poster/"></head>
-          <body>Redirecting to <a href="projects/baby-food-poster/">baby-food-poster</a></body>
+          <html lang="zh-CN">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>AI Agent Workspace</title>
+            <style>
+              body { font-family: sans-serif; max-width: 600px; margin: 80px auto; padding: 0 20px; }
+              h1 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+              ul { list-style: none; padding: 0; }
+              li { margin: 12px 0; }
+              a { color: #409eff; text-decoration: none; font-size: 1.1rem; }
+              a:hover { text-decoration: underline; }
+            </style>
+          </head>
+          <body>
+            <h1>🚀 AI Agent Workspace — Projects</h1>
+            <ul>
+              <li><a href="projects/hermes-admin/">hermes-admin — Vue 3 后台管理系统</a></li>
+              <li><a href="projects/baby-food-poster/">baby-food-poster — 婴儿辅食海报生成器</a></li>
+            </ul>
+          </body>
           </html>
           EOF
 
